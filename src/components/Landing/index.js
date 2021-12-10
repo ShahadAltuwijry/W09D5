@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "./../../reducers/login";
+// import { login } from "./../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./style.css";
@@ -10,6 +10,7 @@ const Landing = () => {
     return state;
   });
 
+  // eslint-disable-next-line
   const dispatch = useDispatch();
 
   const [posts, setPosts] = useState([]);
@@ -29,6 +30,7 @@ const Landing = () => {
 
   useEffect(() => {
     getAllPosts();
+    // eslint-disable-next-line
   }, []);
   //---------------------------------
 
@@ -38,16 +40,13 @@ const Landing = () => {
     try {
       let newPost = e.target.newPost.value;
       console.log(newPost);
+      // eslint-disable-next-line
       const res = await axios.post(
         `${BASE_URL}/post/${state.signIn.user._id}`,
         {
           desc: newPost,
         }
       );
-
-      const data = {
-        newTask: e.target.newPost.value,
-      };
 
       getAllPosts();
     } catch (error) {
@@ -82,14 +81,19 @@ const Landing = () => {
 
   //like
   const likePost = async (id) => {
-    console.log(liked);
+    //params are post & user Id
+
     try {
       setLiked(!liked);
-      let res = await axios.post(`${BASE_URL}/like/${id}`, {
-        headers: {
-          Authorization: `Bearer ${state.signIn.token}`,
-        },
-      });
+      // eslint-disable-next-line
+      let res = await axios.post(
+        `${BASE_URL}/like/${id}/${state.signIn.user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${state.signIn.token}`,
+          },
+        }
+      );
 
       // console.log("like");
       getAllPosts();
@@ -160,7 +164,7 @@ const Landing = () => {
                     ) : (
                       <button
                         className="btn"
-                        onClick={() => likePost(post._id)}
+                        onClick={() => likePost(post._id, state.signIn.userId)}
                         key={post._id + 7}
                       >
                         Unlike

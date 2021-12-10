@@ -27,6 +27,7 @@ const Register = () => {
     e.preventDefault();
     let exist = false;
 
+    // eslint-disable-next-line
     allUsers.filter((user) => {
       if (user.email === email || user.userName === userName) {
         exist = true;
@@ -52,6 +53,7 @@ const Register = () => {
         password: password,
       };
 
+      // eslint-disable-next-line
       const res = await axios
         .post(`${BASE_URL}/regster`, regData)
         .then((res) => console.log(res));
