@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { login } from "./../../reducers/login";
+import { logout } from "./../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./style.css";
@@ -109,23 +109,29 @@ const Landing = () => {
     navigate(`/postDetails/${id}`);
   };
 
+  const logOut = () => {
+    dispatch(logout({ token: "" }));
+    navigate("/");
+  };
+
   //-----------------------
 
   return (
     <div className="mainDivLand">
       <h1>Home Page</h1>
       {!state.signIn.token ? (
-        <>
+        <div className="logDiv">
           <button className="logBtn" onClick={() => navigate("/login")}>
             Login
           </button>
           <button className="logBtn" onClick={() => navigate("/register")}>
             Register
           </button>
-        </>
+        </div>
       ) : (
         <div>
           <h4>welcome back!</h4>
+
           <div className="addingDiv">
             <form onSubmit={addPost}>
               <input

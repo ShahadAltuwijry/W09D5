@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  color: white;
+  background-color: black;
 }
 
 .App-logo {
@@ -35,4 +37,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.logoutDiv {
+  position: fixed;
+  top: 0;
 }
