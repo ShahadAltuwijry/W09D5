@@ -102,6 +102,15 @@ const Landing = () => {
     }
   };
 
+  //---------------------------
+
+  //to open post details
+  const fullPost = (id) => {
+    navigate(`/postDetails/${id}`);
+  };
+
+  //-----------------------
+
   return (
     <div className="mainDivLand">
       <h1>Home Page</h1>
@@ -154,27 +163,31 @@ const Landing = () => {
                     {post.timeStamp}
                   </p>
                   <div className="btnsDiv" key={post._id + 4}>
-                    <button className="btn" key={post._id + 5}>
+                    <button
+                      className="btn"
+                      key={post._id + 5}
+                      onClick={() => fullPost(post._id)}
+                    >
                       <img
                         className="comIcon"
                         src="https://img.icons8.com/windows/64/000000/comment-medical.png"
                         alt="icon"
                       />
                     </button>
-                    {!liked ? (
-                      <button
-                        className="btn"
-                        onClick={() => likePost(post._id, state.signIn.userId)}
-                        key={post._id + 6}
-                      >
-                        <img
-                          className="comIcon"
-                          src="https://img.icons8.com/windows/50/000000/like.png"
-                          alt="icon"
-                        />
-                      </button>
-                    ) : (
-                      <button
+                    {/* {!liked ? ( */}
+                    <button
+                      className="btn"
+                      onClick={() => likePost(post._id, state.signIn.userId)}
+                      key={post._id + 6}
+                    >
+                      <img
+                        className="comIcon"
+                        src="https://img.icons8.com/windows/50/000000/like.png"
+                        alt="icon"
+                      />
+                    </button>
+                    {/* ) : ( */}
+                    {/* <button
                         className="btn"
                         onClick={() => likePost(post._id, state.signIn.userId)}
                         key={post._id + 7}
@@ -185,7 +198,7 @@ const Landing = () => {
                           alt="icon"
                         />
                       </button>
-                    )}
+                    )} */}
 
                     {post.userId._id === state.signIn.user._id ? (
                       <>

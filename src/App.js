@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path="/" element={<Landing />} />
-        <Route exact path="/postDetails" element={<FullPost />} />
+        <Route exact path="/postDetails/:id" element={<FullPost />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/Register" element={<Register />} />
         <Route exact path="/userPage" element={<UserPage />} />

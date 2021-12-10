@@ -27,6 +27,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 20px;
+  transition: all ease-in-out 0.6s;
 }
 
 .btnsDiv {
@@ -41,6 +42,13 @@
   height: 40px;
   border-radius: 60%;
   margin: 5px;
+  transition: all ease-in-out 0.6s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: rgb(199, 199, 199);
+  transform: scale(1.1);
 }
 
 .addingDiv {
@@ -51,7 +59,7 @@
 
 .addingInput {
   width: 87%;
-  height: 100px;
+  height: 102px;
   font-size: 20px;
   text-align: center;
   border: 1px gray solid;
@@ -61,8 +69,16 @@
 .sendBtn {
   border: 1px gray solid;
   border-radius: 10px;
-  padding-top: 5px;
+  margin-bottom: 10px;
+  /* padding-top: -1px; */
   height: 105px;
+  transition: all ease-in-out 0.6s;
+}
+
+.sendBtn:hover {
+  cursor: pointer;
+  background-color: rgb(199, 199, 199);
+  /* transform: scale(1.1); */
 }
 
 .comIcon {
