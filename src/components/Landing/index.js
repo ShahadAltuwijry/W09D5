@@ -127,7 +127,11 @@ const Landing = () => {
                 placeholder="What's happening?"
               />
               <button className="sendBtn" type="submit">
-                Send
+                <img
+                  className="comIcon"
+                  src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-send-instagram-flatart-icons-outline-flatarticons.png"
+                  alt="icon"
+                />
               </button>
             </form>
           </div>
@@ -151,15 +155,23 @@ const Landing = () => {
                   </p>
                   <div className="btnsDiv" key={post._id + 4}>
                     <button className="btn" key={post._id + 5}>
-                      show comments
+                      <img
+                        className="comIcon"
+                        src="https://img.icons8.com/windows/64/000000/comment-medical.png"
+                        alt="icon"
+                      />
                     </button>
                     {!liked ? (
                       <button
                         className="btn"
-                        onClick={() => likePost(post._id)}
+                        onClick={() => likePost(post._id, state.signIn.userId)}
                         key={post._id + 6}
                       >
-                        like
+                        <img
+                          className="comIcon"
+                          src="https://img.icons8.com/windows/50/000000/like.png"
+                          alt="icon"
+                        />
                       </button>
                     ) : (
                       <button
@@ -167,7 +179,11 @@ const Landing = () => {
                         onClick={() => likePost(post._id, state.signIn.userId)}
                         key={post._id + 7}
                       >
-                        Unlike
+                        <img
+                          className="comIcon"
+                          src="https://img.icons8.com/windows/32/000000/dislike.png"
+                          alt="icon"
+                        />
                       </button>
                     )}
 
@@ -178,7 +194,11 @@ const Landing = () => {
                           onClick={() => deletePost(post._id)}
                           key={post._id + 8}
                         >
-                          Delete
+                          <img
+                            className="comIcon"
+                            src="https://img.icons8.com/fluency-systems-regular/48/000000/filled-trash.png"
+                            alt="icon"
+                          />
                         </button>
                       </>
                     ) : (
