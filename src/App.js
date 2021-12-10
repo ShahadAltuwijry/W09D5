@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       {state.signIn.token ? (
         <div className="logoutDiv">
-          <button className="logBtn" className="btn" onClick={logOut}>
+          <button className="btn" onClick={logOut}>
             <img
               className="comIcon"
               src="https://img.icons8.com/fluency-systems-regular/48/000000/exit.png"

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "./../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./style.css";
@@ -14,9 +13,8 @@ const Landing = () => {
   const dispatch = useDispatch();
 
   const [posts, setPosts] = useState([]);
-  const [liked, setLiked] = useState(false);
-  // console.log(state);
-  // console.log(posts);
+  // const [likes, setLikes] = useState(0);
+
   const navigate = useNavigate();
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -57,7 +55,6 @@ const Landing = () => {
 
   //soft deleteing post
   const deletePost = async (id) => {
-    setLiked(!liked);
     try {
       // eslint-disable-next-line
       let res = await axios.delete(`${BASE_URL}/softDelPost/${id}`, {
@@ -66,11 +63,6 @@ const Landing = () => {
         },
       });
       console.log(res, "deleting");
-
-      // const data = {
-      //   delTask: "",
-      // };
-      // dispatch(delete_tasks({ data }));
 
       getAllPosts();
     } catch (error) {
@@ -84,7 +76,6 @@ const Landing = () => {
     //params are post & user Id
 
     try {
-      setLiked(!liked);
       // eslint-disable-next-line
       let res = await axios.post(
         `${BASE_URL}/like/${id}/${state.signIn.user._id}`,
@@ -109,12 +100,9 @@ const Landing = () => {
     navigate(`/postDetails/${id}`);
   };
 
-  const logOut = () => {
-    dispatch(logout({ token: "" }));
-    navigate("/");
-  };
-
   //-----------------------
+
+  //to get likes counter
 
   return (
     <div className="mainDivLand">
@@ -155,19 +143,21 @@ const Landing = () => {
             return (
               <div className="postsMainDiv" key={post._id + 11}>
                 <div className="postDiv" key={post._id + 10}>
-                  <h4 className="posterName" key={post._id + 1}>
-                    @{post.userId.userName}
-                  </h4>
-                  <h2 className="postDesc" key={post._id + 2}>
-                    {post.desc}
-                  </h2>
-                  <p
-                    className="timeStamp"
-                    style={{ color: "grey", fontSize: "10px" }}
-                    key={post._id + 3}
-                  >
-                    {post.timeStamp}
-                  </p>
+                  <div className="contDiv">
+                    <h4 className="posterName" key={post._id + 1}>
+                      @{post.userId.userName}
+                    </h4>
+                    <h2 className="postDesc" key={post._id + 2}>
+                      {post.desc}
+                    </h2>
+                    <p
+                      className="timeStamp"
+                      style={{ color: "grey", fontSize: "10px" }}
+                      key={post._id + 3}
+                    >
+                      {post.timeStamp}
+                    </p>
+                  </div>
                   <div className="btnsDiv" key={post._id + 4}>
                     <button
                       className="btn"

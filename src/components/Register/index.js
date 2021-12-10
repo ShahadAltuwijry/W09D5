@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import "./style.css";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -63,30 +64,37 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <input
-        required
-        type="text"
-        name="userName"
-        placeholder="enter a username"
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <input
-        required
-        type="email"
-        name="email"
-        placeholder="enter an email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        required
-        type="password"
-        name="password"
-        placeholder="enter a password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={signUp}>Register</button>
+    <div className="loginMainDiv">
+      <h1 className="loginHead">Register</h1>
+      <div className="inputsDiv">
+        <input
+          className="loginInput"
+          required
+          type="text"
+          name="userName"
+          placeholder="enter a username"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <input
+          className="loginInput"
+          required
+          type="email"
+          name="email"
+          placeholder="enter an email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          className="loginInput"
+          required
+          type="password"
+          name="password"
+          placeholder="enter a password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="loginBtn" onClick={signUp}>
+          Register
+        </button>
+      </div>
     </div>
   );
 };

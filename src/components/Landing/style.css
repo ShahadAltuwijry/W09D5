@@ -6,17 +6,18 @@
 
 .logDiv {
   width: 100%;
-  height: 640px;
+  height: 570px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  margin-top: 70px;
+  /* justify-content: center; */
   top: 50%;
   left: 50%;
 }
 
 .logBtn {
-  width: 100px;
+  width: 150px;
   height: 40px;
   border-radius: 20px;
   margin: 5px;
@@ -48,10 +49,13 @@
 }
 
 .postDiv {
+  color: black;
   width: 90%;
+  max-height: 200px;
   border: 1px solid rgb(200, 200, 200);
   border-radius: 20px;
-  background-color: rgb(246, 246, 246);
+  background-color: rgb(32, 32, 32);
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -59,8 +63,26 @@
   transition: all ease-in-out 0.6s;
 }
 
+.contDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  /* border: 1px solid black; */
+}
+
+.postDesc {
+  margin-top: 50px;
+}
+
+.timeStamp {
+  margin-top: 30px;
+}
+
 .btnsDiv {
-  width: 100%;
+  width: 30%;
+  margin-top: -25px;
+  margin-left: 570px;
   display: flex;
   /* border: 1px solid black; */
   justify-content: flex-end;
@@ -81,32 +103,38 @@
 }
 
 .addingDiv {
-  margin-left: 106px;
-  width: 81.68%;
+  color: black;
+  margin-top: 20px;
+  width: 100;
   /* background-color: rgb(238, 238, 238); */
 }
 
 .addingInput {
-  width: 87%;
+  width: 68%;
   height: 102px;
   font-size: 20px;
   text-align: center;
   border: 1px gray solid;
-  border-radius: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 15px;
 }
 
 .sendBtn {
   border: 1px gray solid;
-  border-radius: 10px;
+  background-color: rgb(184, 184, 184);
+  border-radius: 15px;
   margin-bottom: 10px;
-  /* padding-top: -1px; */
-  height: 105px;
+  margin-right: 20px;
+  padding-bottom: 3px;
+  height: 100px;
+  width: 30px;
   transition: all ease-in-out 0.6s;
 }
 
 .sendBtn:hover {
   cursor: pointer;
-  background-color: rgb(199, 199, 199);
+  background-color: rgb(128, 128, 128);
   /* transform: scale(1.1); */
 }
 

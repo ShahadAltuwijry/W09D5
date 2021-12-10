@@ -38,22 +38,25 @@ const Login = () => {
   return (
     <div className="loginMainDiv">
       <h1 className="loginHead">Login</h1>
-      <div className="inputsDiv"></div>
-      <input
-        className="loginInput"
-        required
-        type="text"
-        placeholder="enter username or email"
-        onChange={(e) => setLogMethod(e.target.value)}
-      />
-      <input
-        className="loginInput"
-        required
-        type="password"
-        placeholder="enter your password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button className="loginBtn" onClick={logging}>Login</button>
+      <div className="inputsDiv">
+        <input
+          className="loginInput"
+          required
+          type="text"
+          placeholder="enter username or email"
+          onChange={(e) => setLogMethod(e.target.value)}
+        />
+        <input
+          className="loginInput"
+          required
+          type="password"
+          placeholder="enter your password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="loginBtn" onClick={logging}>
+          Login
+        </button>
+      </div>
     </div>
   );
 };

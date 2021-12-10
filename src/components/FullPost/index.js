@@ -12,10 +12,10 @@ const FullPost = () => {
   const [post, setPost] = useState([]);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   let postId = useParams().id;
 
-  console.log(comments);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   //getting the full post details
@@ -27,9 +27,12 @@ const FullPost = () => {
         },
       });
 
+      let counter = res.data[2];
+
       setPost(res.data[0]);
       setComments(res.data[1]);
       setLikes(res.data[2]);
+      setCounter(counter.length);
     } catch (error) {
       console.log(error);
     }
@@ -37,12 +40,14 @@ const FullPost = () => {
 
   useEffect(() => {
     details();
+    // eslint-disable-next-line
   }, []);
 
   //posting a comment
   const comment = async (e) => {
     e.preventDefault();
     try {
+      // eslint-disable-next-line
       let res = await axios.post(
         `${BASE_URL}/comment/${postId}/${state.signIn.user._id}`,
         {
@@ -58,7 +63,12 @@ const FullPost = () => {
       {post && (
         <>
           <div className="postDetailDiv">
-            <h2 className="name">{post.desc}</h2>
+            <h2
+              className="name"
+              style={{ marginTop: "10px", fontSize: "35px" }}
+            >
+              {post.desc}
+            </h2>
             <p
               className="timeStamp"
               style={{ color: "grey", fontSize: "10px" }}
@@ -66,6 +76,30 @@ const FullPost = () => {
             >
               {post.timeStamp}
             </p>
+            <br />
+            <p style={{ fontSize: "20px" }}>
+              {counter}
+              <img
+                // className="comIcon"
+                style={{ width: "16px" }}
+                src="https://img.icons8.com/windows/50/ffffff/like.png"
+                alt="icon"
+              />
+              <br />
+            </p>
+            <p style={{ color: "gray" }}>liked by: </p>
+            <div style={{ display: "flex" }}>
+              {likes.map((like) => {
+                return (
+                  <p
+                    key={like._id}
+                    style={{ color: "gray", marginLeft: "5px" }}
+                  >
+                    @{like.userId.userName},
+                  </p>
+                );
+              })}
+            </div>
           </div>
           {comments && (
             <>
@@ -78,12 +112,14 @@ const FullPost = () => {
                       style={{
                         color: "grey",
                         fontSize: "15px",
-                        // marginBottom: "-10px",
+                        marginTop: "10px",
                       }}
                     >
                       @{com.userId.userName}
                     </h3>
-                    <h2 key={com._id + 3}>{com.desc}</h2>
+                    <h2 key={com._id + 3} style={{ marginTop: "20px" }}>
+                      {com.desc}
+                    </h2>
 
                     <p
                       className="timeStamp"
@@ -92,7 +128,6 @@ const FullPost = () => {
                     >
                       {com.timeStamp}
                     </p>
-                    <hr />
                   </div>
                 );
               })}
