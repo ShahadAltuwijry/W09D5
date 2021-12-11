@@ -80,10 +80,38 @@ const Register = () => {
       // eslint-disable-next-line
       const res = await axios
         .post(`${BASE_URL}/regster`, regData)
-        .then((res) => console.log(res));
-
-      navigate("/login");
+        .then((res) => {
+          if (
+            res.data ===
+            "User validation failed: email: Please fill a valid email address"
+          ) {
+            Swal.fire({
+              title: "Please enter a Valid email :)",
+              showClass: {
+                popup: "animate__animated animate__fadeInDown",
+              },
+              hideClass: {
+                popup: "animate__animated animate__fadeOutUp",
+              },
+            });
+          } else {
+            console.log(res.data);
+            navigate("/login");
+          }
+        });
     }
+  };
+
+  const invalPass = () => {
+    Swal.fire({
+      title: "Please enter a Valid password :)",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    });
   };
 
   return (
@@ -109,11 +137,14 @@ const Register = () => {
         <input
           className="loginInput"
           required
+          minLength={6}
           type="password"
           name="password"
           placeholder="enter a password"
-          onChange={(e) => setPassword(e.target.value)}
-          onChange={(e) => validate(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            validate(e.target.value);
+          }}
         />
         <span
           className="passSpan"
@@ -123,7 +154,10 @@ const Register = () => {
           <br />
           {req}
         </span>
-        <button className="loginBtn" onClick={signUp}>
+        <button
+          className="loginBtn"
+          onClick={password.length >= 6 ? signUp : invalPass}
+        >
           Register
         </button>
       </div>
