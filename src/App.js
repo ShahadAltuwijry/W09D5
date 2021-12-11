@@ -8,6 +8,7 @@ import FullPost from "./components/FullPost";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Confirm from "./components/Confirm";
 import UserPage from "./components/UserPage";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/postDetails/:id" element={<FullPost />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/Register" element={<Register />} />
+        <Route exact path="/Confirm" element={<Confirm />} />
         <Route exact path="/userPage" element={<UserPage />} />
       </Routes>
     </div>

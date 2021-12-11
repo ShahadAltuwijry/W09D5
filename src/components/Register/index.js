@@ -95,8 +95,9 @@ const Register = () => {
               },
             });
           } else {
-            console.log(res.data);
-            navigate("/login");
+            localStorage.setItem("user", JSON.stringify(res.data));
+            // console.log(res.data);
+            navigate("/confirm");
           }
         });
     }
