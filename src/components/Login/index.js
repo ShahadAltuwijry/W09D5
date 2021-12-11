@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
+const popupTools = require("popup-tools");
 
 const Login = () => {
   // eslint-disable-next-line
@@ -35,6 +36,22 @@ const Login = () => {
     navigate("/");
   };
 
+  const oAuth = () => {
+    popupTools.popup(
+      `${BASE_URL}/auth/google`,
+      "Logging in with Google",
+      { width: 500, height: 500 },
+      (err, user) => {
+        if (err) {
+          console.log("caughton error:", err.message);
+        } else {
+          dispatch(login({ token: user.token, user: user.result }));
+          navigate("/");
+        }
+      }
+    );
+  };
+
   return (
     <div className="loginMainDiv">
       <h1 className="loginHead">Login</h1>
@@ -55,6 +72,11 @@ const Login = () => {
         />
         <button className="loginBtn" onClick={logging}>
           Login
+        </button>
+        <br/>
+        <h4>Or login using:</h4>
+        <button className="googleBtn" onClick={oAuth}>
+          Google+
         </button>
       </div>
     </div>
