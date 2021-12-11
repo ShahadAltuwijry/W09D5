@@ -63,6 +63,16 @@ const FullPost = () => {
       {post && (
         <>
           <div className="postDetailDiv">
+            {/* <div className="userInfo" style={{ display: "flex" }}>
+              <img
+                style={{ width: "80px", borderRadius: "100%" }}
+                src={post.userId.avatar}
+                alt="userImg"
+              />
+              <h4 className="posterName" key={post._id + 1}>
+                @{post.userId.userName}
+              </h4>
+            </div> */}
             <h2
               className="name"
               style={{ marginTop: "10px", fontSize: "35px" }}

@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { login } from "../../reducers/login";
 
 const Confirm = () => {
-  const state = useSelector((state) => {
-    return state;
-  });
-
   //   console.log(state, "state");
 
   const [code, setCode] = useState(0);
   const [user, setUser] = useState([]);
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -27,7 +19,9 @@ const Confirm = () => {
 
   const conTrue = async () => {
     try {
+      // eslint-disable-next-line
       if (user.key == code) {
+        // eslint-disable-next-line
         const res = await axios.put(`${BASE_URL}/confirm/${user._id}`);
 
         localStorage.clear();

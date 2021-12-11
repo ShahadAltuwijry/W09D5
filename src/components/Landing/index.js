@@ -144,9 +144,16 @@ const Landing = () => {
               <div className="postsMainDiv" key={post._id + 11}>
                 <div className="postDiv" key={post._id + 10}>
                   <div className="contDiv">
-                    <h4 className="posterName" key={post._id + 1}>
-                      @{post.userId.userName}
-                    </h4>
+                    <div className="userInfo" style={{ display: "flex" }}>
+                      <img
+                        style={{ width: "50px", borderRadius: "100%" }}
+                        src={post.userId.avatar}
+                        alt="userImg"
+                      />
+                      <h4 className="posterName" key={post._id + 1}>
+                        @{post.userId.userName}
+                      </h4>
+                    </div>
                     <h2 className="postDesc" key={post._id + 2}>
                       {post.desc}
                     </h2>

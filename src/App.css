@@ -42,4 +42,5 @@
 .logoutDiv {
   position: fixed;
   top: 0;
+  margin: 10px;
 }
