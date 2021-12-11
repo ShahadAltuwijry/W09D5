@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./style.css";
+require("dotenv").config();
 
 const Landing = () => {
   const state = useSelector((state) => {

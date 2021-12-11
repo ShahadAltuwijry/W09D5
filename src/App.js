@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Confirm from "./components/Confirm";
 import UserPage from "./components/UserPage";
+require("dotenv").config();
 
 function App() {
   const state = useSelector((state) => {

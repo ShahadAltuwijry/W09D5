@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import validator from "validator";
 import "./style.css";
+require("dotenv").config();
 
 const Register = () => {
   const [email, setEmail] = useState("");

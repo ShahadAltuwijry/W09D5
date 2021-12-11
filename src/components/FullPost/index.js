@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 import { useSelector } from "react-redux";
+require("dotenv").config();
 
 const FullPost = () => {
   const state = useSelector((state) => {
