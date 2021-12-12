@@ -48,20 +48,24 @@ const Confirm = () => {
   }, []);
 
   return (
-    <div>
-      <h1>
+    <div className="loginMainDiv">
+      <h3 style={{ marginTop: "50px" }} className="loginHead">
         Please Confirm your account by writing <br /> the security code you got
         on your Email.
-      </h1>
-
-      <input
-        type="number"
-        name="code"
-        required
-        placeholder="Enter confirmation code"
-        onChange={(e) => setCode(e.target.value)}
-      />
-      <button onClick={(e) => conTrue()}>Confirm</button>
+      </h3>
+      <div className="inputsDiv">
+        <input
+          className="loginInput"
+          type="number"
+          name="code"
+          required
+          placeholder="Enter confirmation code"
+          onChange={(e) => setCode(e.target.value)}
+        />
+        <button className="loginBtn" onClick={(e) => conTrue()}>
+          Confirm
+        </button>
+      </div>
     </div>
   );
 };
