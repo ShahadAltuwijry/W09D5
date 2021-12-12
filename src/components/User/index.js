@@ -15,12 +15,16 @@ const UserPage = () => {
         marginTop: "20px",
       }}
     >
-      <img
-        style={{ width: "70px", borderRadius: "100%" }}
-        alt="userImg"
-        src={state.signIn.user.avatar}
-      />
-      <h3>@{state.signIn.user.userName}</h3>
+      {state.signIn.user && (
+        <>
+          <img
+            style={{ width: "70px", borderRadius: "100%" }}
+            alt="userImg"
+            src={state.signIn.user.avatar}
+          />
+          <h3>@{state.signIn.user.userName}</h3>
+        </>
+      )}
     </div>
   );
 };
