@@ -2,9 +2,10 @@ import React from "react";
 import axios from "axios";
 import { login } from "../../reducers/login";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
+import Swal from "sweetalert2";
 require("dotenv").config();
 const popupTools = require("popup-tools");
 
@@ -19,22 +20,61 @@ const Login = () => {
 
   const [logMethod, setLogMethod] = useState("");
   const [password, setPassword] = useState("");
+  const [allUsers, setAllUsers] = useState([]);
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  console.log(BASE_URL);
-  const logging = async () => {
+
+  const getUsers = async () => {
+    const user = await axios.get(`${BASE_URL}/users`);
+    setAllUsers(user.data);
+  };
+
+  useEffect(() => {
+    getUsers();
+    // eslint-disable-next-line
+  }, []);
+
+  const logging = async (e) => {
+    e.preventDefault();
+
     const res = await axios.post(`${BASE_URL}/login`, {
       logMethod: logMethod,
       password: password,
     });
-    const data = {
-      user: res.data.result,
-      token: res.data.token,
-    };
-    console.log(res);
-    dispatch(login(data));
 
-    navigate("/");
+    console.log(res, "user res");
+
+    if (res.data === "user not confirmed, please check your email") {
+      Swal.fire({
+        title: "Please confirm your account",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      navigate("/confirm");
+    } else if (res.data === "invalid email or password") {
+      Swal.fire({
+        title: "invalid password or email, please try again",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+    } else {
+      const data = {
+        user: res.data.result,
+        token: res.data.token,
+      };
+      // console.log(res);
+      dispatch(login(data));
+
+      navigate("/");
+    }
   };
 
   const oAuth = () => {

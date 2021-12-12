@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { storage } from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./style.css";
@@ -9,6 +10,41 @@ const Landing = () => {
   const state = useSelector((state) => {
     return state;
   });
+
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState("");
+  const [progress, setProgress] = useState(0);
+
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  const handleUpload = () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            setUrl(url);
+          });
+      }
+    );
+  };
 
   // eslint-disable-next-line
   const dispatch = useDispatch();
@@ -38,12 +74,14 @@ const Landing = () => {
     e.preventDefault();
     try {
       let newPost = e.target.newPost.value;
-      console.log(newPost);
+      // let postImg = e.target.postImg.value;
+
       // eslint-disable-next-line
       const res = await axios.post(
         `${BASE_URL}/post/${state.signIn.user._id}`,
         {
           desc: newPost,
+          img: url,
         }
       );
 
@@ -130,6 +168,7 @@ const Landing = () => {
                 className="addingInput"
                 placeholder="What's happening?"
               />
+
               <button className="sendBtn" type="submit">
                 <img
                   className="comIcon"
@@ -137,6 +176,29 @@ const Landing = () => {
                   alt="icon"
                 />
               </button>
+              <div className="uploading">
+                <label style={{ color: "white" }} className="uploadLabel">
+                  Upload Image
+                  <input
+                    style={{
+                      marginLeft: "10px",
+                    }}
+                    type="file"
+                    name="postImg"
+                    onChange={handleChange}
+                  />
+                </label>
+                <button
+                  style={{
+                    marginRight: "10px",
+                  }}
+                  className="upBtn"
+                  onClick={handleUpload}
+                >
+                  Upload
+                </button>
+                <progress value={progress} max="100" />
+              </div>
             </form>
           </div>
 
@@ -158,9 +220,34 @@ const Landing = () => {
                     <h2 className="postDesc" key={post._id + 2}>
                       {post.desc}
                     </h2>
+                    {post.img ? (
+                      <div
+                        style={{
+                          margin: "30px",
+                          marginLeft: "80px",
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <img
+                          style={{
+                            width: "600px",
+                            maxWidth: "650px",
+                            borderRadius: "10px",
+                          }}
+                          alt="post"
+                          src={post.img}
+                        />
+                      </div>
+                    ) : (
+                      ""
+                    )}
                     <p
                       className="timeStamp"
-                      style={{ color: "grey", fontSize: "10px" }}
+                      style={{ color: "grey", fontSize: "15px" }}
                       key={post._id + 3}
                     >
                       {post.timeStamp}
@@ -178,7 +265,6 @@ const Landing = () => {
                         alt="icon"
                       />
                     </button>
-                    {/* {!liked ? ( */}
                     <button
                       className="btn"
                       onClick={() => likePost(post._id, state.signIn.userId)}
@@ -190,21 +276,8 @@ const Landing = () => {
                         alt="icon"
                       />
                     </button>
-                    {/* ) : ( */}
-                    {/* <button
-                        className="btn"
-                        onClick={() => likePost(post._id, state.signIn.userId)}
-                        key={post._id + 7}
-                      >
-                        <img
-                          className="comIcon"
-                          src="https://img.icons8.com/windows/32/000000/dislike.png"
-                          alt="icon"
-                        />
-                      </button>
-                    )} */}
-
-                    {post.userId._id === state.signIn.user._id ? (
+                    {post.userId._id === state.signIn.user._id ||
+                    state.signIn.user.role === "61a73488b03855b1f60c356f" ? (
                       <>
                         <button
                           className="btn"

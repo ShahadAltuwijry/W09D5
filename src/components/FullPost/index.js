@@ -59,6 +59,62 @@ const FullPost = () => {
     } catch (error) {}
   };
 
+  //deleteing post
+  const deletePost = async (id) => {
+    try {
+      // eslint-disable-next-line
+      let res = await axios.delete(`${BASE_URL}/softDelPost/${id}`, {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      });
+      console.log(res, "deleting");
+
+      details();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  //liking the post
+  const likePost = async (id) => {
+    //params are post & user Id
+
+    try {
+      // eslint-disable-next-line
+      let res = await axios.post(
+        `${BASE_URL}/like/${id}/${state.signIn.user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${state.signIn.token}`,
+          },
+        }
+      );
+
+      // console.log("like");
+      details();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  //deleting comment
+  const deleteCom = async (id) => {
+    try {
+      // eslint-disable-next-line
+      let res = await axios.put(`${BASE_URL}/delComment/${id}`, {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      });
+      console.log(res, "deleting");
+
+      details();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="detailsDiv">
       {post && (
@@ -80,10 +136,35 @@ const FullPost = () => {
             >
               {post.desc}
             </h2>
+            {post.img ? (
+              <div
+                style={{
+                  margin: "30px",
+                  marginLeft: "10px",
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  style={{
+                    width: "500px",
+                    maxWidth: "650px",
+                    borderRadius: "10px",
+                  }}
+                  alt="post"
+                  src={post.img}
+                />
+              </div>
+            ) : (
+              ""
+            )}
             <p
               className="timeStamp"
               style={{ color: "grey", fontSize: "10px" }}
-              key={post._id + 3}
+              key={postId + 3}
             >
               {post.timeStamp}
             </p>
@@ -110,6 +191,38 @@ const FullPost = () => {
                   </p>
                 );
               })}
+            </div>
+
+            <div className="btnsDivFull">
+              <button
+                className="btn"
+                onClick={() => likePost(postId, state.signIn.user)}
+                key={postId + 6}
+              >
+                <img
+                  className="comIcon"
+                  src="https://img.icons8.com/windows/50/000000/like.png"
+                  alt="icon"
+                />
+              </button>
+              {post.userId === state.signIn.user._id ||
+              state.signIn.user.role === "61a73488b03855b1f60c356f" ? (
+                <>
+                  <button
+                    className="btn"
+                    onClick={() => deletePost(postId)}
+                    key={postId + 8}
+                  >
+                    <img
+                      className="comIcon"
+                      src="https://img.icons8.com/fluency-systems-regular/48/000000/filled-trash.png"
+                      alt="icon"
+                    />
+                  </button>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {comments && (
@@ -139,6 +252,26 @@ const FullPost = () => {
                     >
                       {com.timeStamp}
                     </p>
+                    <div className="btnsDiv">
+                      {com.userId._id === state.signIn.user._id ||
+                      state.signIn.user.role === "61a73488b03855b1f60c356f" ? (
+                        <>
+                          <button
+                            className="btn"
+                            onClick={() => deleteCom(com._id)}
+                            key={com._id + 8}
+                          >
+                            <img
+                              className="comIcon"
+                              src="https://img.icons8.com/fluency-systems-regular/48/000000/filled-trash.png"
+                              alt="icon"
+                            />
+                          </button>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
                 );
               })}
