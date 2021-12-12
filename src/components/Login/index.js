@@ -21,7 +21,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-
+  console.log(BASE_URL);
   const logging = async () => {
     const res = await axios.post(`${BASE_URL}/login`, {
       logMethod: logMethod,
@@ -74,7 +74,7 @@ const Login = () => {
         <button className="loginBtn" onClick={logging}>
           Login
         </button>
-        <br/>
+        <br />
         <h4>Or login using:</h4>
         <button className="googleBtn" onClick={oAuth}>
           Google+
