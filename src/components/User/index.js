@@ -12,7 +12,7 @@ const UserPage = () => {
         position: "fixed",
         width: "100px",
         marginLeft: "1070px",
-        marginTop: "10px",
+        marginTop: "20px",
       }}
     >
       <img

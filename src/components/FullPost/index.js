@@ -150,7 +150,7 @@ const FullPost = () => {
               >
                 <img
                   style={{
-                    width: "500px",
+                    width: "600px",
                     maxWidth: "650px",
                     borderRadius: "10px",
                   }}
