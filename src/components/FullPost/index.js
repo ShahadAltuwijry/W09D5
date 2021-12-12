@@ -14,6 +14,7 @@ const FullPost = () => {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [id, setId] = useState(0);
 
   let postId = useParams().id;
 
@@ -30,10 +31,13 @@ const FullPost = () => {
 
       let counter = res.data[2];
 
+      // console.log(res.data[0].userId._id);
+
       setPost(res.data[0]);
       setComments(res.data[1]);
       setLikes(res.data[2]);
       setCounter(counter.length);
+      setId(res.data[0].userId._id);
     } catch (error) {
       console.log(error);
     }
@@ -205,7 +209,7 @@ const FullPost = () => {
                   alt="icon"
                 />
               </button>
-              {post.userId === state.signIn.user._id ||
+              {id === state.signIn.user._id ||
               state.signIn.user.role === "61a73488b03855b1f60c356f" ? (
                 <>
                   <button
