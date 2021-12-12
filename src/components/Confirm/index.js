@@ -49,10 +49,10 @@ const Confirm = () => {
 
   return (
     <div className="loginMainDiv">
-      <h3 style={{ marginTop: "50px" }} className="loginHead">
-        Please Confirm your account by writing <br /> the security code you got
-        on your Email.
-      </h3>
+      <h2 style={{ marginTop: "120px" }} className="loginHead">
+        Please Confirm your account by writing the security
+        <br /> code you got on your Email.
+      </h2>
       <div className="inputsDiv">
         <input
           className="loginInput"
