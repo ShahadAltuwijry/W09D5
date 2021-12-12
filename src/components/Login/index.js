@@ -42,7 +42,7 @@ const Login = () => {
       password: password,
     });
 
-    console.log(res, "user res");
+    // console.log(res, "user res");
 
     if (res.data === "user not confirmed, please check your email") {
       Swal.fire({
