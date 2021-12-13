@@ -61,6 +61,7 @@ const Register = () => {
 
     if (exist) {
       Swal.fire({
+        icon: "error",
         title: "Email already registred, use another email or Log in please.",
         showClass: {
           popup: "animate__animated animate__fadeInDown",
