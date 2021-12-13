@@ -24,7 +24,7 @@ const Landing = () => {
   const handleUpload = (e) => {
     e.preventDefault();
     const uploadImg = storage.ref(`images/${image.name}`).put(image);
-    console.log(uploadImg);
+
     uploadImg.on(
       "state_changed",
       (snapshot) => {
