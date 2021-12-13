@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 import FullPost from "./components/FullPost";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
@@ -19,12 +20,26 @@ function App() {
     return state;
   });
 
+  // const navigate = useNavigate();
+
+  // const home = () => {
+  //   navigate("/");
+  // }; --> strangly this one ruins the array reverse
+  //on the landing page and it shows the posts
+  //oldest first so i'll comment
+
   return (
     <div className="App">
       <img
+        // onClick={() => home()}
         alt="logo"
         src="./Free Vector Graphics and Vector Art for download.png"
-        style={{ width: "10%", marginTop: "1%", marginBottom: "-3%" }}
+        style={{
+          width: "10%",
+          marginTop: "1%",
+          marginBottom: "-3%",
+          // cursor: "pointer",
+        }}
       />
       {state.signIn.token ? <Buttons /> : ""}
       <UserPage />
