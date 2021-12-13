@@ -1,15 +1,17 @@
 import "./App.css";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { logout } from "./reducers/login";
+import { useSelector } from "react-redux";
 import FullPost from "./components/FullPost";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Confirm from "./components/Confirm";
 import UserPage from "./components/User";
+import Buttons from "./components/Buttons";
+import ForgotPass from "./components/ForgotPass";
+import ResetPass from "./components/ResetPass";
+
 require("dotenv").config();
 
 function App() {
@@ -17,44 +19,9 @@ function App() {
     return state;
   });
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const logOut = () => {
-    dispatch(logout({ token: "" }));
-    navigate("/");
-  };
-
-  const back = () => {
-    navigate(-1);
-  };
-
   return (
     <div className="App">
-      {state.signIn.token ? (
-        <>
-          <div className="logoutDiv" style={{ marginTop: "60px" }}>
-            <button className="btn" onClick={back}>
-              <img
-                className="comIcon"
-                alt="icon"
-                src="https://img.icons8.com/material-outlined/50/000000/circled-left--v1.png"
-              />
-            </button>
-          </div>
-          <div className="logoutDiv">
-            <button className="btn" onClick={logOut}>
-              <img
-                className="comIcon"
-                src="https://img.icons8.com/fluency-systems-regular/48/000000/exit.png"
-                alt="icon"
-              />
-            </button>
-          </div>
-        </>
-      ) : (
-        ""
-      )}
+      {state.signIn.token ? <Buttons /> : ""}
       <UserPage />
       <Routes>
         <Route exact path="/" element={<Landing />} />
@@ -62,6 +29,8 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/Register" element={<Register />} />
         <Route exact path="/Confirm" element={<Confirm />} />
+        <Route exact path="/forgotPass" element={<ForgotPass />} />
+        <Route exact path="/resetPass/:id" element={<ResetPass />} />
         {/* <Route exact path="/userPage" element={<UserPage />} /> */}
       </Routes>
     </div>

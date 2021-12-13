@@ -20,6 +20,7 @@ const Login = () => {
 
   const [logMethod, setLogMethod] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line
   const [allUsers, setAllUsers] = useState([]);
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -114,6 +115,13 @@ const Login = () => {
         <button className="loginBtn" onClick={logging}>
           Login
         </button>
+        <br />
+        <a
+          style={{ color: "white", textDecoration: "none" }}
+          href="/forgotpass"
+        >
+          Forgot Password?<i> reset password</i>
+        </a>
         <br />
         <h4>Or login using:</h4>
         <button className="googleBtn" onClick={oAuth}>

@@ -60,7 +60,9 @@ const FullPost = () => {
         }
       );
       details();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //deleteing post
@@ -72,7 +74,7 @@ const FullPost = () => {
           Authorization: `Bearer ${state.signIn.token}`,
         },
       });
-      console.log(res, "deleting");
+      // console.log(res, "deleting");
 
       details();
     } catch (error) {
@@ -111,7 +113,7 @@ const FullPost = () => {
           Authorization: `Bearer ${state.signIn.token}`,
         },
       });
-      console.log(res, "deleting");
+      // console.log(res, "deleting");
 
       details();
     } catch (error) {
