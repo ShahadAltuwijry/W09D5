@@ -1,4 +1,6 @@
-# User stories
+# Social Media
+
+## User stories
 
 - **Register**: You can register in this social media app and share your thoughts or your favorite shots, but before that you'll have to confirm your account by writing a code sent to your email.
 - **Login**: If you already registred you can just login and immediately start sharing.
@@ -10,7 +12,7 @@
 - **Liking posts**: Admins and Users can like any post they want, the usernames of everyone who liked the post will show up when opening the post.
 - **Logout**: After you finish using the app you can logout instantly.
 
-# Components
+## Components
 
 - **Landing**
 - **Login**
@@ -22,7 +24,7 @@
 - **Reset Pass**
 - **user**
 
-# Fronend Links & Access
+## Fronend Links & Access
 
 | Path             | Permissions | Behavior                                                                                                                                                                                                                      |
 | ---------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
