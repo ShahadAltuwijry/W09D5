@@ -21,9 +21,11 @@ const Landing = () => {
     }
   };
 
-  const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
+  const handleUpload = (e) => {
+    e.preventDefault();
+    const uploadImg = storage.ref(`images/${image.name}`).put(image);
+    console.log(uploadImg);
+    uploadImg.on(
       "state_changed",
       (snapshot) => {
         const progress = Math.round(
@@ -86,6 +88,7 @@ const Landing = () => {
       );
 
       getAllPosts();
+      e.target.newPost.value = "";
     } catch (error) {
       console.log(error.message);
     }
@@ -202,103 +205,104 @@ const Landing = () => {
             </form>
           </div>
 
-          {posts.map((post) => {
-            return (
-              <div className="postsMainDiv" key={post._id + 11}>
-                <div className="postDiv" key={post._id + 10}>
-                  <div className="contDiv">
-                    <div className="userInfo" style={{ display: "flex" }}>
-                      <img
-                        style={{ width: "50px", borderRadius: "100%" }}
-                        src={post.userId.avatar}
-                        alt="userImg"
-                      />
-                      <h4 className="posterName" key={post._id + 1}>
-                        @{post.userId.userName}
-                      </h4>
-                    </div>
-                    <h2 className="postDesc" key={post._id + 2}>
-                      {post.desc}
-                    </h2>
-                    {post.img ? (
-                      <div
-                        style={{
-                          margin: "30px",
-                          marginLeft: "80px",
-                          width: "100%",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
+          {posts &&
+            posts.reverse().map((post) => {
+              return (
+                <div className="postsMainDiv" key={post._id + 11}>
+                  <div className="postDiv" key={post._id + 10}>
+                    <div className="contDiv">
+                      <div className="userInfo" style={{ display: "flex" }}>
                         <img
-                          style={{
-                            width: "600px",
-                            maxWidth: "650px",
-                            borderRadius: "10px",
-                          }}
-                          alt="post"
-                          src={post.img}
+                          style={{ width: "50px", borderRadius: "100%" }}
+                          src={post.userId.avatar}
+                          alt="userImg"
                         />
+                        <h4 className="posterName" key={post._id + 1}>
+                          @{post.userId.userName}
+                        </h4>
                       </div>
-                    ) : (
-                      ""
-                    )}
-                    <p
-                      className="timeStamp"
-                      style={{ color: "grey", fontSize: "15px" }}
-                      key={post._id + 3}
-                    >
-                      {post.timeStamp}
-                    </p>
-                  </div>
-                  <div className="btnsDiv" key={post._id + 4}>
-                    <button
-                      className="btn"
-                      key={post._id + 5}
-                      onClick={() => fullPost(post._id)}
-                    >
-                      <img
-                        className="comIcon"
-                        src="https://img.icons8.com/windows/64/000000/comment-medical.png"
-                        alt="icon"
-                      />
-                    </button>
-                    <button
-                      className="btn"
-                      onClick={() => likePost(post._id, state.signIn.userId)}
-                      key={post._id + 6}
-                    >
-                      <img
-                        className="comIcon"
-                        src="https://img.icons8.com/windows/50/000000/like.png"
-                        alt="icon"
-                      />
-                    </button>
-                    {post.userId._id === state.signIn.user._id ||
-                    state.signIn.user.role === "61a73488b03855b1f60c356f" ? (
-                      <>
-                        <button
-                          className="btn"
-                          onClick={() => deletePost(post._id)}
-                          key={post._id + 8}
+                      <h2 className="postDesc" key={post._id + 2}>
+                        {post.desc}
+                      </h2>
+                      {post.img ? (
+                        <div
+                          style={{
+                            margin: "30px",
+                            marginLeft: "80px",
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
                         >
                           <img
-                            className="comIcon"
-                            src="https://img.icons8.com/fluency-systems-regular/48/000000/filled-trash.png"
-                            alt="icon"
+                            style={{
+                              width: "600px",
+                              maxWidth: "650px",
+                              borderRadius: "10px",
+                            }}
+                            alt="post"
+                            src={post.img}
                           />
-                        </button>
-                      </>
-                    ) : (
-                      ""
-                    )}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                      <p
+                        className="timeStamp"
+                        style={{ color: "grey", fontSize: "15px" }}
+                        key={post._id + 3}
+                      >
+                        {post.timeStamp}
+                      </p>
+                    </div>
+                    <div className="btnsDiv" key={post._id + 4}>
+                      <button
+                        className="btn"
+                        key={post._id + 5}
+                        onClick={() => fullPost(post._id)}
+                      >
+                        <img
+                          className="comIcon"
+                          src="https://img.icons8.com/windows/64/000000/comment-medical.png"
+                          alt="icon"
+                        />
+                      </button>
+                      <button
+                        className="btn"
+                        onClick={() => likePost(post._id, state.signIn.userId)}
+                        key={post._id + 6}
+                      >
+                        <img
+                          className="comIcon"
+                          src="https://img.icons8.com/windows/50/000000/like.png"
+                          alt="icon"
+                        />
+                      </button>
+                      {post.userId._id === state.signIn.user._id ||
+                      state.signIn.user.role === "61a73488b03855b1f60c356f" ? (
+                        <>
+                          <button
+                            className="btn"
+                            onClick={() => deletePost(post._id)}
+                            key={post._id + 8}
+                          >
+                            <img
+                              className="comIcon"
+                              src="https://img.icons8.com/fluency-systems-regular/48/000000/filled-trash.png"
+                              alt="icon"
+                            />
+                          </button>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       )}
     </div>

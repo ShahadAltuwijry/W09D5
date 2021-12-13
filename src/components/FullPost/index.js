@@ -15,6 +15,8 @@ const FullPost = () => {
   const [likes, setLikes] = useState([]);
   const [counter, setCounter] = useState(0);
   const [id, setId] = useState(0);
+  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState("");
 
   let postId = useParams().id;
 
@@ -31,13 +33,13 @@ const FullPost = () => {
 
       let counter = res.data[2];
 
-      // console.log(res.data[0].userId._id);
-
       setPost(res.data[0]);
       setComments(res.data[1]);
       setLikes(res.data[2]);
       setCounter(counter.length);
       setId(res.data[0].userId._id);
+      setAvatar(res.data[0].userId.avatar);
+      setName(res.data[0].userId.userName);
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +62,7 @@ const FullPost = () => {
         }
       );
       details();
+      e.target.comment.value = "";
     } catch (error) {
       console.log(error);
     }
@@ -126,16 +129,25 @@ const FullPost = () => {
       {post && (
         <>
           <div className="postDetailDiv">
-            {/* <div className="userInfo" style={{ display: "flex" }}>
-              <img
-                style={{ width: "80px", borderRadius: "100%" }}
-                src={post.userId.avatar}
-                alt="userImg"
-              />
-              <h4 className="posterName" key={post._id + 1}>
-                @{post.userId.userName}
-              </h4>
-            </div> */}
+            <div className="userInfo" style={{ display: "flex" }}>
+              {avatar && (
+                <img
+                  style={{
+                    width: "80px",
+                    borderRadius: "100%",
+                    marginBottom: "10px",
+                  }}
+                  src={avatar}
+                  alt="userImg"
+                />
+              )}
+              {name && (
+                <h4 className="posterName" key={post._id + 1}>
+                  @{name}
+                </h4>
+              )}
+            </div>
+
             <h2
               className="name"
               style={{ marginTop: "10px", fontSize: "35px" }}
