@@ -9,8 +9,9 @@
   left: 50%; */
 }
 
-.loginHead {
-  margin-top: 20px;
+.loginHeadL {
+  margin-top: 4%;
+  margin-bottom: -2%;
 }
 
 .inputsDiv {
@@ -32,7 +33,8 @@
   color: black;
 }
 
-.loginBtn {
+.loginBtnL {
+  background-color: rgb(228, 223, 255);
   margin-top: 20px;
   width: 80px;
   height: 30px;
@@ -40,24 +42,35 @@
   transition: all ease-in-out 0.6s;
 }
 
-.loginBtn:hover {
+.loginBtnL:hover {
   cursor: pointer;
-  background-color: rgb(199, 199, 199);
+  background-color: rgb(183, 191, 236);
   transform: scale(1.1);
 }
 
-.googleBtn {
+.anchr {
+  color: white;
+  text-decoration: none;
+  transition: all ease-in-out 0.5s;
+}
+
+.anchr:hover {
+  color: rgb(183, 191, 236);
+  text-decoration: underline;
+}
+
+.googleBtnL {
   background-color: rgb(255, 255, 255);
   border: 1px solid black;
   margin-top: 20px;
-  width: 100px;
+  width: 12%;
   height: 30px;
   border-radius: 20px;
-  transition: all ease-in-out 0.6s;
+  transition: all ease-in-out 0.5s;
 }
 
-.googleBtn:hover {
+.googleBtnL:hover {
   cursor: pointer;
   background-color: rgb(255, 90, 90);
-  transform: scale(1.05);
+  transform: scale(1.04);
 }

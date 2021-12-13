@@ -150,14 +150,14 @@ const FullPost = () => {
 
             <h2
               className="name"
-              style={{ marginTop: "10px", fontSize: "35px" }}
+              style={{ margin: "2%", fontSize: "35px" }}
             >
               {post.desc}
             </h2>
             {post.img ? (
               <div
                 style={{
-                  margin: "30px",
+                  // margin: "3%",
                   // marginLeft: "0%",
                   width: "100%",
                   display: "flex",

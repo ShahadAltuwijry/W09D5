@@ -21,6 +21,11 @@ function App() {
 
   return (
     <div className="App">
+      <img
+        alt="logo"
+        src="./Free Vector Graphics and Vector Art for download.png"
+        style={{ width: "10%", marginTop: "1%", marginBottom: "-3%" }}
+      />
       {state.signIn.token ? <Buttons /> : ""}
       <UserPage />
       <Routes>

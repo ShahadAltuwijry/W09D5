@@ -149,15 +149,17 @@ const Landing = () => {
 
   return (
     <div className="mainDivLand">
-      <h1>Home Page</h1>
       {!state.signIn.token ? (
-        <div className="logDiv">
-          <button className="logBtn" onClick={() => navigate("/login")}>
-            Login
-          </button>
-          <button className="logBtn" onClick={() => navigate("/register")}>
-            Register
-          </button>
+        <div className="logDivStart">
+          <div className="startDiv">
+            <h1 className="startHead">Get in touch</h1>
+            <button className="logBtn" onClick={() => navigate("/login")}>
+              Login
+            </button>
+            <button className="logBtn" onClick={() => navigate("/register")}>
+              Register
+            </button>
+          </div>
         </div>
       ) : (
         <div>

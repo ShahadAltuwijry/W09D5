@@ -123,7 +123,7 @@ const Login = () => {
 
   return (
     <div className="loginMainDiv">
-      <h1 className="loginHead">Login</h1>
+      <h1 className="loginHeadL">Login</h1>
       <div className="inputsDiv">
         <input
           className="loginInput"
@@ -139,19 +139,16 @@ const Login = () => {
           placeholder="enter your password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="loginBtn" onClick={logging}>
+        <button className="loginBtnL" onClick={logging}>
           Login
         </button>
         <br />
-        <a
-          style={{ color: "white", textDecoration: "none" }}
-          href="/forgotpass"
-        >
+        <a className="anchr" href="/forgotpass">
           Forgot Password?<i> reset password</i>
         </a>
         <br />
         <h4>Or login using:</h4>
-        <button className="googleBtn" onClick={oAuth}>
+        <button className="googleBtnL" onClick={oAuth}>
           Google+
         </button>
       </div>

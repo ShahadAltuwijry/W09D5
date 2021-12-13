@@ -119,7 +119,7 @@ const Register = () => {
 
   return (
     <div className="loginMainDiv">
-      <h1 className="loginHead">Register</h1>
+      <h1 className="loginHeadL">Register</h1>
       <div className="inputsDiv">
         <input
           className="loginInput"
