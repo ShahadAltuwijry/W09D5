@@ -42,7 +42,7 @@ const ForgotPass = () => {
   return (
     <div>
       <div className="loginMainDiv">
-        <h1 className="loginHead">Forgot password</h1>
+        <h1 className="loginHeadL">Forgot password</h1>
         <div className="inputsDivF">
           <h3>
             enter your email and we will send you a link <br /> to reset your
