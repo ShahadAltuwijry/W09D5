@@ -37,4 +37,8 @@
 | /resetPass/:id   | Private      | You'll be able to reset your password here but you'll only get your link for this page on your email after writing it in the forgotPass page.                                                                                 |
 
 
+# UML Diagram
+
+![Untitled Diagram drawio (5)](https://user-images.githubusercontent.com/92247858/145883389-0c71abdb-25b7-4bae-83a2-faef3d72ca80.png)
+
 
