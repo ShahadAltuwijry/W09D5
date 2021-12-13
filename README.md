@@ -30,11 +30,11 @@
 | ---------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | /                | Public      | Landing page, if not logged in yet it'll give the visitor two options: Logging in for users who are users & registring for new users. If logged in the user can view, like other people post and can also add and delete his. |
 | /Register        | Public      | Register new user, the default role of the registration is user & admins can register using the backend.                                                                                                                      |
-| /Confirm         | privet      | after registering you'll be navigated to this page so that you'll write the code sent to your email.                                                                                                                          |
+| /Confirm         | private      | after registering you'll be navigated to this page so that you'll write the code sent to your email.                                                                                                                          |
 | /login           | Public      | Users logging in page, after logging in it will instently navigate you to you Landing page.                                                                                                                                   |
-| /postDetails/:id | Privet      | Only registred users can access this page and view the post details (comments & likes).                                                                                                                                       |
+| /postDetails/:id | Private      | Only registred users can access this page and view the post details (comments & likes).                                                                                                                                       |
 | /forgetPass      | Public      | By going to this page you'll be asked to write you account email so that we can send you the link to reset, you can get to this page by clicking the forgot password link on the login page.                                  |
-| /resetPass/:id   | Privet      | You'll be able to reset your password here but you'll only get your link for this page on your email after writing it in the forgotPass page.                                                                                 |
+| /resetPass/:id   | Private      | You'll be able to reset your password here but you'll only get your link for this page on your email after writing it in the forgotPass page.                                                                                 |
 
 # Getting Started with Create React App
 
