@@ -20,7 +20,7 @@ const Landing = () => {
       setImage(e.target.files[0]);
     }
   };
-  console.log("here");
+  // console.log("here");
 
   const handleUpload = (e) => {
     e.preventDefault();
@@ -184,9 +184,7 @@ const Landing = () => {
                 <label style={{ color: "white" }} className="uploadLabel">
                   Upload Image
                   <input
-                    style={{
-                      marginLeft: "10px",
-                    }}
+                    style={{ marginLeft: "10px" }}
                     type="file"
                     name="postImg"
                     onChange={handleChange}
@@ -195,13 +193,14 @@ const Landing = () => {
                 <button
                   style={{
                     marginRight: "10px",
+                    width: "5%",
                   }}
                   className="upBtn"
                   onClick={handleUpload}
                 >
                   Upload
                 </button>
-                <progress value={progress} max="100" />
+                <progress style={{ width: "12%" }} value={progress} max="100" />
               </div>
             </form>
           </div>
@@ -214,7 +213,7 @@ const Landing = () => {
                     <div className="contDiv">
                       <div className="userInfo" style={{ display: "flex" }}>
                         <img
-                          style={{ width: "50px", borderRadius: "100%" }}
+                          style={{ width: "75px", borderRadius: "100%" }}
                           src={post.userId.avatar}
                           alt="userImg"
                         />
@@ -229,7 +228,7 @@ const Landing = () => {
                         <div
                           style={{
                             margin: "30px",
-                            marginLeft: "80px",
+                            marginLeft: "12%",
                             width: "100%",
                             display: "flex",
                             flexDirection: "column",
@@ -239,8 +238,8 @@ const Landing = () => {
                         >
                           <img
                             style={{
-                              width: "600px",
-                              maxWidth: "650px",
+                              width: "110%",
+                              // maxWidth: "650px",
                               borderRadius: "10px",
                             }}
                             alt="post"

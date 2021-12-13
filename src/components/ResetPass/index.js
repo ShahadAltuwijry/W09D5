@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+import "./style.css";
+import "animate.css";
 require("dotenv").config();
 
 const ResetPAss = () => {
   const id = useParams().id;
 
   const [code, setCode] = useState(0); //code from message
-  const [writtenCode, setWrittenCode] = useState(0); //code from user
-  const [newPass, setNewPass] = useState("");
+  // const [writtenCode, setWrittenCode] = useState(0); //code from user
+  // const [newPass, setNewPass] = useState("");
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
 
@@ -21,54 +24,73 @@ const ResetPAss = () => {
 
   useEffect(() => {
     getUser();
+    // eslint-disable-next-line
   }, []);
 
   //confirming the code and setting the new password
   const passReset = async (e) => {
     e.preventDefault();
 
+    // eslint-disable-next-line
     if (e.target[0].value == code) {
-      //   console.log("code here");
+
       if (e.target[1].value === e.target[2].value) {
-        // console.log("second if");
+
         let pass = e.target[1].value;
+        // eslint-disable-next-line
         const res = await axios.post(`${BASE_URL}/resetPass/${id}`, {
           newPass: pass,
         });
+        navigate("/login");
+
+        // console.log(res, "res here");
       }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Incorrect security code, recheck please.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      // console.log("invalid");
     }
-    navigate("/login");
   };
 
   return (
     <div>
       <div className="loginMainDiv">
-        <h1 className="loginHead">Set your new password</h1>
-        <div className="inputsDiv">
-          <form onSubmit={passReset}>
+        <h1 className="loginHeadF">Set your new password</h1>
+        <br />
+        <h3>Enter the security code you got on you email</h3>
+        <div className="inputsDivR">
+          <form className="forgotForm" onSubmit={passReset}>
             <input
-              className="loginInput"
+              className="loginInputF"
               required
               name="codeInput"
               placeholder="Enter the security code"
-              onChange={(e) => setWrittenCode(e.target.value)}
+              // onChange={(e) => setWrittenCode(e.target.value)}
             />
             <input
-              className="loginInput"
+              className="loginInputF"
               required
               name="password"
               type="password"
               placeholder="Enter your new password"
-              onChange={(e) => setNewPass(e.target.value)}
+              // onChange={(e) => setNewPass(e.target.value)}
             />
             <input
-              className="loginInput"
+              className="loginInputF"
               required
               name="password"
               type="password"
               placeholder="Confirm your password"
             />
-            <input className="loginBtn" value="Send code" type="submit" />
+            <input className="loginBtn" value="Reset" type="submit" />
           </form>
         </div>
       </div>

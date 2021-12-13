@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import validator from "validator";
+// import validator from "validator";
+import PasswordChecklist from "react-password-checklist";
 import "./style.css";
+import "animate.css";
 require("dotenv").config();
 
 const Register = () => {
@@ -12,31 +14,29 @@ const Register = () => {
   // const [avatar, setAvatar] = useState("");
   const [password, setPassword] = useState("");
   const [allUsers, setAllUsers] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [req, setReq] = useState("");
   const navigate = useNavigate();
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  const validate = (value) => {
-    if (
-      validator.isStrongPassword(value, {
-        minLength: 6,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      })
-    ) {
-      setErrorMessage("this is a strong password");
-      setReq("");
-    } else {
-      setErrorMessage("this isn't a strong password");
-      setReq(
-        "you'll need it to be 6+ long & has at least: 1 uppercase letter, 1 lowercase letter, 1 number & 1 symbol "
-      );
-    }
-  };
+  // const validate = (value) => {
+  //   if (
+  //     validator.isStrongPassword(value, {
+  //       minLength: 6,
+  //       minLowercase: 1,
+  //       minUppercase: 1,
+  //       minNumbers: 1,
+  //       minSymbols: 1,
+  //     })
+  //   ) {
+  //     setErrorMessage("this is a strong password");
+  //     setReq("");
+  //   } else {
+  //     setErrorMessage("this isn't a strong password");
+  //     setReq(
+  //       "you'll need it to be 6+ long & has at least: 1 uppercase letter, 1 lowercase letter, 1 number & 1 symbol "
+  //     );
+  //   }
+  // };
 
   const getUsers = async () => {
     const user = await axios.get(`${BASE_URL}/users`);
@@ -146,18 +146,34 @@ const Register = () => {
           placeholder="enter a password"
           onChange={(e) => {
             setPassword(e.target.value);
-            validate(e.target.value);
+            // validate(e.target.value);
           }}
         />
-        <span
+        <br />
+        <PasswordChecklist
+          rules={["minLength", "specialChar", "number", "capital", "lowercase"]}
+          minLength={6}
+          value={password}
+          onChange={(isValid) => {
+            if (isValid) {
+              const button = document.querySelector("#loginBtn");
+              button.disabled = false;
+            } else {
+              const button = document.querySelector("#loginBtn");
+              button.disabled = true;
+            }
+          }}
+        />
+        {/* <span
           className="passSpan"
           style={{ fontWeight: "bold", color: "maroon", marginTop: "10px" }}
         >
           {errorMessage}
           <br />
           {req}
-        </span>
+        </span> */}
         <button
+          id="loginBtn"
           className="loginBtn"
           onClick={password.length >= 6 ? signUp : invalPass}
         >

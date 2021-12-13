@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./style.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import "animate.css";
 
 require("dotenv").config();
 
@@ -13,36 +14,46 @@ const ForgotPass = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
 
-  const [users, setUsers] = useState([]);
-
-//   const getUsers = async () => {
-//     const user = await axios.get(`${BASE_URL}/users`);
-//     setUsers(user.data);
-//   };
-
-//   useEffect(() => {
-//     getUsers();
-//     // eslint-disable-next-line
-//   }, []);
-
   const forgotEmail = async (e) => {
     e.preventDefault();
-    // console.log(e.target[0].value);
+
+    // setEmail(e.target[0].value);
+
     let res = await axios.post(`${BASE_URL}/forgotPass`, {
       email: e.target[0].value,
     });
-    navigate("/");
+    if (res.data === "Cannot read property 'email' of null") {
+      Swal.fire({
+        icon: "error",
+        title: "user is not registred or incorrect",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+    } else {
+      console.log(res, "forgot res");
+      navigate("/");
+    }
   };
 
   return (
     <div>
       <div className="loginMainDiv">
         <h1 className="loginHead">Forgot password</h1>
-        <div className="inputsDiv">
-          <form onSubmit={forgotEmail}>
+        <div className="inputsDivF">
+          <h3>
+            enter your email and we will send you a link <br /> to reset your
+            password:
+          </h3>
+          <br />
+          <form className="forgotForm" onSubmit={forgotEmail}>
             <input
-              className="loginInput"
+              className="loginInputF"
               required
+              type="email"
               name="userEmail"
               placeholder="Enter your email"
             />

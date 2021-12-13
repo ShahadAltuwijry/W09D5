@@ -158,7 +158,7 @@ const FullPost = () => {
               <div
                 style={{
                   margin: "30px",
-                  marginLeft: "10px",
+                  // marginLeft: "0%",
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
@@ -168,8 +168,8 @@ const FullPost = () => {
               >
                 <img
                   style={{
-                    width: "600px",
-                    maxWidth: "650px",
+                    width: "100%",
+                    // maxWidth: "650px",
                     borderRadius: "10px",
                   }}
                   alt="post"
