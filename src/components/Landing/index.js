@@ -20,6 +20,7 @@ const Landing = () => {
       setImage(e.target.files[0]);
     }
   };
+  console.log("here");
 
   const handleUpload = (e) => {
     e.preventDefault();
