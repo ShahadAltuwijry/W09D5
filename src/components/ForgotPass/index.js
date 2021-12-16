@@ -11,6 +11,7 @@ const ForgotPass = () => {
   //here it'll have one input for the email and it'll do the forgot backend route
   //this will find the navigate to the front page after showing an alert
   //saying that the email was sent then take you back to the frint page
+  
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
 
